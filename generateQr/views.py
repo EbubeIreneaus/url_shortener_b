@@ -37,7 +37,7 @@ class generate(APIView):
 			img.save(img_path)
 			return JsonResponse({
 				'status': 'success',
-				'qr_src':f'http://127.0.0.1:8000/qr_codes/{key}.png'})
+				'qr_src':f'https://isls.vercel.app/qr_codes/{key}.png'})
 		except:
 
 			return JsonResponse({'status': 'failed'})

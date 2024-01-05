@@ -47,8 +47,8 @@ class Isllinks(APIView):
                 img.save(image_path)
                 Link.objects.create(key=key, link=link, qr_src=f'qr_codes/{key}.png')
                 return JsonResponse({'status': 'success',
-                                     'qr_src': f'http://127.0.0.1:8000/qr_codes/{key}.png',
-                                     'shortened_link': f'http://localhost:3000/{key}'})
+                                     'qr_src': f'https://isls.vercel.app/qr_codes/{key}.png',
+                                     'shortened_link': f'https://isls.netlify.app/{key}'})
             except Exception as e:
                 return JsonResponse({'status': "failed", 'code': str(e)})
         return JsonResponse({'status': "failed", 'code': 'could not detect link'})
