@@ -22,10 +22,7 @@
       "src": "/static/(.*)",
       "dest": "/static/$1"
     },
-//  #  {
-//    "src": "/qrcodes/(.*)",
-//    "dest": "/qrcodes/$1"
-//    },
+
     {
       "src": "/(.*)",
       "dest": "urlshortener/wsgi.py"
