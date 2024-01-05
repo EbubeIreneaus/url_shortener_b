@@ -18,10 +18,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
+
     {
     "src": "/qrcodes/(.*)",
     "dest": "/qrcodes/$1"
