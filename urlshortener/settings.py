@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
-
+from dotenv import load_dotenv
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+load_dotenv()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -78,14 +79,21 @@ WSGI_APPLICATION = 'urlshortener.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        "USER":'postgres',
-        "PASSWORD": '0gXi91Kitaup54NI4fTm',
-        "HOST":'containers-us-west-47.railway.app',
-        'PORT':'6339'
+        'NAME': os.getenv('EMAIL_NAME'),
+        "USER": 'postgres',
+        "PASSWORD": os.getenv('EMAIL_PASS'),
+        "HOST": os.getenv('EMAIL_HOST'),
+        'PORT':'33630'
     }
 }
 

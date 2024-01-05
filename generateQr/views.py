@@ -25,13 +25,19 @@ class generate(APIView):
 		size = data['border_size']
 		key = generate_key(7)
 		try:
-			qr = QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L,box_size=10, border=size)
+			qr = QRCode(
+				version=1,
+				error_correction=qrcode.constants.ERROR_CORRECT_L,
+				box_size=10, border=size
+				)
 			qr.add_data(text)
 			qr.make(fit=True)
 			img = qr.make_image(fill_color=fcolor, back_color = bcolor)
 			img_path = os.path.join(settings.MEDIA_ROOT, f'{key}.png')
 			img.save(img_path)
-			return JsonResponse({'status': 'success','src':f'qr_codes/{key}.png'})
+			return JsonResponse({
+				'status': 'success',
+				'qr_src':f'http://127.0.0.1:8000/qr_codes/{key}.png'})
 		except:
 
 			return JsonResponse({'status': 'failed'})
