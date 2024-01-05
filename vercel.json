@@ -13,12 +13,15 @@
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "static"
+        "distDir": "staticfiles_build"
       }
     }
   ],
   "routes": [
-
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
     {
     "src": "/qrcodes/(.*)",
     "dest": "/qrcodes/$1"
