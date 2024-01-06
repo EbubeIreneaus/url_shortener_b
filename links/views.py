@@ -1,5 +1,4 @@
 import json
-import cloudinary
 from django.http import HttpResponse, JsonResponse
 from .models import Link
 from rest_framework.views import APIView
@@ -10,7 +9,8 @@ from django.conf import settings
 import os
 from io import BytesIO
 from PIL import Image
-
+import cloudinary
+import cloudinary.uploader
 cloudinary.config(
     cloud_name=os.getenv('CLOUDINARY_NAME'),
     api_key = os.getenv('CLOUDINARY_KEY'),

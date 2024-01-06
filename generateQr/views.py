@@ -11,6 +11,7 @@ from qrcode import QRCode
 from PIL import  Image
 from django.conf import  settings
 import cloudinary
+import cloudinary.uploader
 from io import BytesIO
 # Create your views here.
 
