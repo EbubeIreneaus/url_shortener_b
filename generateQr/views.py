@@ -38,6 +38,5 @@ class generate(APIView):
 			return JsonResponse({
 				'status': 'success',
 				'qr_src':f'https://isls.vercel.app/qr_codes/{key}.png'})
-		except:
-
-			return JsonResponse({'status': 'failed'})
+		except Exception as e:
+			return JsonResponse({'status': 'failed', "code":str(e)})
