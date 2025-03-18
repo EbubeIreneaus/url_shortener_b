@@ -31,7 +31,7 @@ def generate_key(length):
 class Isllinks(APIView):
     def get(self, request):
         key = request.GET.get('key', '')
-        if key is not '':
+        if key != '':
             try:
                 links = Link.objects.get(key=key)
                 return JsonResponse({'status': 'success', 'redirect': links.link})
