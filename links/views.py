@@ -42,6 +42,7 @@ class Isllinks(APIView):
     def post(self, request):
         data = json.loads(request.body)
         link = data['link']
+        f_url = os.getenv('URL')
         if not link.startswith('http://') and not link.startswith('https://'):
             return JsonResponse({'status': "failed", 'code': 'invalid url address'})
         key = generate_key(7)
@@ -49,7 +50,7 @@ class Isllinks(APIView):
             try:
                 qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L,
                                    box_size=10, border=1)
-                qr.add_data(f'{os.getenv('URL')}/{key}')
+                qr.add_data(f'{f_url}/{key}')
                 qr.make(fit=True)
                 img = qr.make_image(fill_color='black', back_color='white')
                 img.save(img_byte, format="png")
@@ -58,7 +59,7 @@ class Isllinks(APIView):
                 Link.objects.create(key=key, link=link, qr_src=uploaded_img['secure_url'])
                 return JsonResponse({'status': 'success',
                                      'qr_src': uploaded_img['secure_url'],
-                                     'shortened_link': f'{os.getenv('URL')}/{key}'})
+                                     'shortened_link': f'{f_url}/{key}'})
             except Exception as e:
                 return JsonResponse({'status': "failed", 'code': str(e)})
         return JsonResponse({'status': "failed", 'code': 'could not detect link'})
